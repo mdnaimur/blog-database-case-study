@@ -85,7 +85,6 @@ id
 username
 email
 password
-bio
 role
 created_at
 ```
@@ -102,6 +101,7 @@ user_id
 author_name
 description
 created_at
+image_url
 ```
 
 ---
@@ -111,13 +111,14 @@ created_at
 ```
 BlogPosts
 
-id
+post_id
 author_id
 title
 content
-slug
+post_status
 published_at
-created_at
+created_at,
+updated_at
 ```
 
 ---
@@ -140,7 +141,7 @@ created_at
 ```
 Comments
 
-id
+comment_id
 user_id
 post_id
 comment_text
@@ -341,6 +342,34 @@ Foreign key:
 Comments.post_id
 ```
 
+
+---
+
+## BlogPost,Users - PostViewLogs
+
+Requirement:
+
+> One post can have many Views.
+> One user can have many Views.
+
+```
+BlogPost , Users
+
+1
+ |
+ |
+ N
+
+Views
+```
+
+Foreign key:
+
+```
+user.post_view_log_id
+Blogpost.post_view_log_id
+```
+
 ---
 
 # Step 6: Resolve Many-to-Many
@@ -415,10 +444,29 @@ New entity:
 ```
 PostCategories
 
-post_id FK
+blog_post_id FK
 
 category_id FK
 ```
+ 
+
+ ---
+
+Important step.
+
+Requirement:
+
+> A BlogPosts need to count, for count cost we need to separate count name as post_view_count for better aggregate, read/write performance.
+
+new Entity
+```
+post_view_count
+view_count_id
+count
+```
+Problem:
+
+One post:
 
 ---
 
