@@ -30,7 +30,7 @@ Let's do it for  **Blog Database Case Study**.
 
 # Step 1: Identify Entities
 
-Read the requirements and find the things the system needs to store.
+
 
 Requirement:
 

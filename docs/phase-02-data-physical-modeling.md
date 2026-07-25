@@ -11,21 +11,26 @@ Now we decide exactly how each table will be stored.
 | id            | BIGSERIAL       | PRIMARY KEY             |
 | username      | VARCHAR(50)     | NOT NULL UNIQUE         |
 | email         | VARCHAR(255)    | NOT NULL UNIQUE         |
-| password_hash | TEXT            | NOT NULL                |
-| bio           | TEXT            | NULL                    |
+| password_hash | VARCHAR(255)            | NOT NULL                |
 | role          | VARCHAR(20)     | NOT NULL DEFAULT 'user' |
 | created_at    | TIMESTAMPTZ     | DEFAULT now()           |
+
+
 
 ---
 
 ## Authors
 
-| Column       | Type         | Constraints                 |
-| ------------ | ------------ | --------------------------- |
-| id           | BIGSERIAL    | PRIMARY KEY                 |
-| user_id      | BIGINT       | UNIQUE REFERENCES users(id) |
-| display_name | VARCHAR(100) | NOT NULL                    |
-| description  | TEXT         | NULL                        |
+| Column          | Type                  | Constraints                 |
+| ------------    | ------------          | --------------------------- |
+| authors_id      | BIGINT                | PRIMARY KEY, UNIQUE REFERENCES users(id) |
+| first_name      | VARCHAR(100)          | NOT NULL                    |
+| last_name_name  | VARCHAR(100)          | NOT NULL                    |
+| profile_pic_url | TEXT                  | NULL                        |
+| bio             | TEXT                  | NULL                         |
+| authors_status  | status[act,inat,ban]  | NOT NULL DEFAULT 'active'    |
+| created_at      | TIMESTAM              | DEFAULT NOW()                |
+| updated_at      | TIMESTAM              | DEFAULT NOW()
 
 ---
 
