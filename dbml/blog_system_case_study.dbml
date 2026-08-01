@@ -58,19 +58,6 @@ Table blog_posts{
 
 }
 
-
-
-Table post_categories {
-  blog_post_id bigint [pk, ref: > blog_posts.blog_post_id]
-  cat_id bigint [ref: < categories.cat_id]
-
-  indexes {
-    (blog_post_id, cat_id) [unique]
-  }
-}
-
-
-
 Table categories {
   cat_id bigint [pk, increment]
   category_name varchar [unique, not null]
@@ -79,18 +66,37 @@ Table categories {
 
 
 
-Table commnets {
+Table post_categories {
+  blog_post_id bigint [ ref: > blog_posts.blog_post_id]
+  cat_id bigint [ref: > categories.cat_id]
+
+  indexes {
+    (blog_post_id, cat_id) [pk]
+  }
+}
+
+
+
+
+
+
+Table comments {
   comment_id bigint [pk, increment]
   content text [not null]
-  created_at timestamp [ default: `CURRENT_TIMESTMP`]
+  created_at timestamp [ default: `CURRENT_TIMESTAMP`]
   blog_post_id bigint [not null, ref: > blog_posts.blog_post_id]
   user_id bigint [ not null, ref: > users.user_id]
+
+  indexes {
+    (blog_post_id)
+    (user_id)
+  }
   
 }
 
 
 Table post_view_count {
-  blog_post_id bigint [pk, ref: > blog_posts.blog_post_id]
+  blog_post_id bigint [pk, ref: - blog_posts.blog_post_id]
   view_count bigint [default: 0]
 
 }
@@ -99,7 +105,7 @@ Table post_view_count {
 Table post_view_logs {
   view_log_id bigint [pk, increment]
   blog_post_id bigint [not null, ref: > blog_posts.blog_post_id]
-  user_id bigint [ref: > authors.author_id]
+  user_id bigint [ref: > users.user_id, not null]
   viewed_at timestamp [default:  `CURRENT_TIMESTAMP`]
 
   indexes {

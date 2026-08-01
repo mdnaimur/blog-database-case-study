@@ -8,3 +8,8 @@ Possible future enhancements include:
 - Followers
 - Distributed Caching
 - Search Engine Integration
+
+## transaction
+## proper stres test
+## function and triggers
+## 

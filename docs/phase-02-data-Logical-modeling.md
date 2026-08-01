@@ -488,7 +488,7 @@ Now document it.
 
 # Step 8: Create ER Diagram
 
-Now draw.
+Now draw. This is sample diagram, we draw as proper diagram
 
 ```
 Users
