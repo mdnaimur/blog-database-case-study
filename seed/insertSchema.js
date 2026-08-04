@@ -18,7 +18,7 @@ const {faker} = require("@faker-js/faker");
 
 async function insertUsers(){
   
-  for(let i = 1; i < 1000; i++){
+  for(let i = 1; i <= 10000; i++){
     
     const role = i <= 2 ? "admin" : i <= 5 ? "author" : "reader";
 
@@ -26,8 +26,8 @@ async function insertUsers(){
     `INSERT INTO users (username, email, password, role)
     VALUES ($1 , $2, $3, $4)`, 
     [
-      faker.internet.username(),
-      faker.internet.email(),
+      `${faker.internet.username()}_${i}`,
+      `user${i}@example.com`,
       "hashed_password ",
       role
     ]
@@ -104,13 +104,13 @@ async function insertPosts() {
 
 for (const author of authors.rows) {
 
-  const randomAuthor = authors.rows[Math.floor(Math.random() * authors.rows.length)];
+  // const randomAuthor = authors.rows[Math.floor(Math.random() * authors.rows.length)];
 
   await client.query(
-    `INSERT INTO posts (author_id, title, content, post_status,published_at)
+    `INSERT INTO blog_posts (author_id, title, content, post_status,published_at)
      VALUES ($1, $2, $3, $4, $5)`,
     [
-      randomAuthor.author_id,
+      author.author_id,
       faker.lorem.sentence(),
       faker.lorem.paragraphs(3),
       faker.helpers.arrayElement(['published', 'draft']),
@@ -128,18 +128,18 @@ for (const author of authors.rows) {
  //-------------
 
 async function insertPostCategories() {
-  const posts = await client.query(`SELECT post_id FROM posts`);
-  const categories = await client.query(`SELECT category_id FROM categories`);
+  const posts = await client.query(`SELECT blog_post_id FROM blog_posts`);
+  const categories = await client.query(`SELECT cat_id FROM categories`);
 
   for (const post of posts.rows) {
     const randomCategory = categories.rows[Math.floor(Math.random() * categories.rows.length)];
 
     await client.query(
-      `INSERT INTO post_categories (post_id, category_id)
+      `INSERT INTO post_categories (blog_post_id, cat_id)
        VALUES ($1, $2)`,
       [
-        post.post_id,
-        randomCategory.category_id
+        post.blog_post_id,
+        randomCategory.cat_id
       ]
     );
   }
@@ -151,10 +151,10 @@ async function insertPostCategories() {
 //-------------
 
 async function insertComments() {
-  const posts = await client.query(`SELECT post_id FROM posts`);
+  const posts = await client.query(`SELECT blog_post_id FROM blog_posts`);
   const users = await client.query(`SELECT user_id FROM users`);
 
-  for (let i = 1; i <= 3000; i++) {
+  for (let i = 1; i <= 30000; i++) {
     const randomUser = users.rows[Math.floor(Math.random() * users.rows.length)];
     const randomPost = posts.rows[Math.floor(Math.random() * posts.rows.length)];
 
@@ -166,7 +166,7 @@ async function insertComments() {
        VALUES ($1, $2, $3)`,
       [
         faker.lorem.sentences(2),
-        randomPost.post_id,
+        randomPost.blog_post_id,
         randomUser.user_id  
       ]
     );  
@@ -180,20 +180,20 @@ async function insertComments() {
 //-------------
 
 async function insertViewCounts() {
-  const posts = await client.query(`SELECT post_id FROM posts`);
+  const posts = await client.query(`SELECT blog_post_id FROM blog_posts`);
 
 
-  for (let post = 1; post <= 4500; post++) {
+  for (const post of posts.rows) {
 
 
-    const randomPost = posts.rows[Math.floor(Math.random() * posts.rows.length)];
+    // const randomPost = posts.rows[Math.floor(Math.random() * posts.rows.length)];
 
     await client.query(
-      `INSERT INTO view_counts (blog_post_id,  view_count)
+      `INSERT INTO post_view_count (blog_post_id,  view_count)
        VALUES ($1, $2)`,
       [
-        randomPost.post_id,
-        Math.floor(Math.random() * 100)
+        post.blog_post_id,
+        faker.number.int({min:0,max:1000})
       ]
     );
   }
@@ -205,21 +205,20 @@ async function insertViewCounts() {
 //-------------
 
 async function insertViewLogs() {
-  const posts = await client.query(`SELECT post_id FROM posts`);
+  const posts = await client.query(`SELECT blog_post_id FROM blog_posts`);
   const users = await client.query(`SELECT user_id FROM users`);  
 
 
-  for (let i = 1; i <= 5000; i++) {
+  for (let i = 1; i <= 50000; i++) {
 
     const randomUser = users.rows[Math.floor(Math.random() * users.rows.length)];
     const randomPost = posts.rows[Math.floor(Math.random() * posts.rows.length)];
 
     await client.query(
-      `INSERT INTO view_logs (view_log_id, blog_post_id, user_id)
-       VALUES ($1, $2, $3)`,
+      `INSERT INTO post_view_logs ( blog_post_id, user_id)
+       VALUES ($1, $2)`,
       [
-        i,
-       randomPost.post_id,
+        randomPost.blog_post_id,
         randomUser.user_id
       ]
     );
