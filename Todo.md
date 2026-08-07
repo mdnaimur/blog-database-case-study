@@ -3,7 +3,7 @@
   * physical model
   * DBML desing 
   * Schema -->
-  * seed
+  <!-- * seed -->
   * query practice 
   * advance query
   * add dbml transaction veiw , record obs and gif
@@ -13,15 +13,41 @@
   * do pushlish linked
 
 
+
+
+### After finishing query practice 
+1. do all doc
+2. published git
+3. published gitbook
+4. published medium
+5. published linked
+6. then new project
+7. then attach time for data analysis and do separete post on it
+8. advnace and extra adnvace query data engineering 
 ---
 
 now tasks:
-1. create table
+<!-- 1. create table
 2. seed query with note
-3. organize question set
+3. organize question set -->
 4. then query practice
 5. schema doc
 6. add constrains and index and doc performance optimazizztrion
+
+
+
+### Query General Practice
+
+1. 2hr day-p1
+2. 2hr day-p2
+
+##  advance SQL
+1. day-p1
+2. day-2
+3. 
+### performance 
+1. day_p1 
+2. Extra qustion
 
 
 
@@ -38,46 +64,11 @@ now tasks:
 
 > **Goal:** Complete one small deliverable each day. Focus on consistency, not speed.
 
----
-
-## Phase 1 — Requirements Analysis (2 Days)
-
-| Day       | Topics                                                                                | Deliverable                  |
-| --------- | ------------------------------------------------------------------------------------- | ---------------------------- |
-| **Day 1** | • Define project purpose<br>• Identify users & roles<br>• Identify core features      | Initial project requirements |
-| **Day 2** | • Define business rules<br>• Define key business questions<br>• Finalize requirements | Requirements document        |
 
 ---
 
-## Phase 2 — Database Design (4 Days)
-
-| Day       | Topics                                               | Deliverable             |
-| --------- | ---------------------------------------------------- | ----------------------- |
-| **Day 3** | • Identify entities<br>• Identify attributes         | Entity & attribute list |
-| **Day 4** | • Define relationships<br>• Define cardinality       | Relationship model      |
-| **Day 5** | • Create logical data model<br>• Apply normalization | Normalized schema       |
-| **Day 6** | • Draw ER diagram<br>• Review & refine design        | Final ER Diagram        |
-
----
-
-## Phase 3 — Physical Database Design (3 Days)
-
-| Day       | Topics                                                              | Deliverable                 |
-| --------- | ------------------------------------------------------------------- | --------------------------- |
-| **Day 7** | • Choose PostgreSQL data types<br>• Define primary & foreign keys   | Physical schema draft       |
-| **Day 8** | • Add constraints<br>• Create indexes<br>• Apply naming conventions | Optimized table definitions |
-| **Day 9** | • Create DBML<br>• Compare DBML with ERD                            | Final DBML                  |
-
----
-
-## Phase 4 — Database Implementation (3 Days)
-
-| Day        | Topics                                                                          | Deliverable        |
-| ---------- | ------------------------------------------------------------------------------- | ------------------ |
-| **Day 10** | • Create database & schema<br>• Create tables                                   | Database structure |
-| **Day 11** | • Insert sample/seed data                                                       | Populated database |
-| **Day 12** | • Validate relationships<br>• Test constraints<br>• Perform data quality checks | Verified database  |
-
+-             
+  
 ---
 
 ## Phase 5 — SQL Fundamentals (5 Days)
