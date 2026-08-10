@@ -4,8 +4,9 @@
   * DBML desing 
   * Schema -->
   <!-- * seed -->
-  * query practice 
+  * query practice (add others)
   * advance query
+  * Performance queyy
   * add dbml transaction veiw , record obs and gif
   * data analysis
   * do publish gitbook

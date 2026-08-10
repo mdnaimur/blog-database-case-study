@@ -190,11 +190,146 @@ LIMIT 10;
 
 9. Find the **most active users** based on their total views and comments.
 
+``` sql
+SELECT
+    u.user_id,
+    u.username,
+    COALESCE(v.total_views, 0) AS total_views,
+    COALESCE(c.total_comments, 0) AS total_comments
+FROM users u
+
+LEFT JOIN (
+    SELECT
+        c.user_id,
+        COUNT(*) AS total_comments
+    FROM comments c
+    JOIN blog_posts bp
+        ON bp.blog_post_id = c.blog_post_id
+    WHERE bp.post_status = 'published'
+    GROUP BY c.user_id
+) c
+    ON c.user_id = u.user_id
+
+LEFT JOIN (
+    SELECT
+        c.user_id,
+        SUM(pv.view_count) AS total_views
+    FROM comments c
+    JOIN blog_posts bp
+        ON bp.blog_post_id = c.blog_post_id
+    JOIN post_view_count pv
+        ON pv.blog_post_id = bp.blog_post_id
+    WHERE bp.post_status = 'published'
+    GROUP BY c.user_id
+) v
+    ON v.user_id = u.user_id
+
+ORDER BY
+    total_views DESC,
+    total_comments DESC
+LIMIT 20;
+;
+
+```
+
+ > Apply CTE
+
+
+``` sql
+WITH user_posts AS(
+	SELECT DISTINCT
+		c.user_id,
+		c.blog_post_id
+	FROM comments c
+	JOIN blog_posts bp
+		ON bp.blog_post_id = c.blog_post_id
+	WHERE bp.post_status = 'published'
+),
+
+comment_totals AS (
+    SELECT
+        c.user_id,
+        COUNT(*) AS total_comments
+    FROM comments c
+    JOIN blog_posts bp
+        ON bp.blog_post_id = c.blog_post_id
+    WHERE bp.post_status = 'published'
+    GROUP BY c.user_id
+),
+
+view_totals AS (
+    SELECT
+        up.user_id,
+        SUM(pv.view_count) AS total_views
+    FROM user_posts up
+    JOIN post_view_count pv
+        ON pv.blog_post_id = up.blog_post_id
+    GROUP BY up.user_id
+)
+
+SELECT
+    u.user_id,
+    u.username,
+    COALESCE(v.total_views, 0) AS total_views,
+    COALESCE(c.total_comments, 0) AS total_comments
+FROM users u
+LEFT JOIN comment_totals c
+    ON c.user_id = u.user_id
+LEFT JOIN view_totals v
+    ON v.user_id = u.user_id
+ORDER BY
+    total_views DESC,
+    total_comments DESC
+LIMIT 20;
+
+```
+
+
+
 10. Find each user's:
 
 * Total comments
 * Total views
 * Activity score
+
+``` sql
+
+WITH comment_total AS (
+    SELECT
+        user_id,
+        COUNT(*) AS total_comments
+    FROM comments
+    GROUP BY user_id
+),
+
+view_total AS (
+    SELECT
+        user_id,
+        COUNT(*) AS total_views
+    FROM post_view_logs
+    WHERE user_id IS NOT NULL
+    GROUP BY user_id
+)
+
+SELECT
+    u.user_id,
+    u.username,
+    COALESCE(ct.total_comments, 0) AS total_comments,
+    COALESCE(vt.total_views, 0) AS total_views,
+    (
+        COALESCE(ct.total_comments, 0) * 3
+        + COALESCE(vt.total_views, 0)
+    ) AS activity_score
+FROM users u
+LEFT JOIN comment_total ct
+    ON ct.user_id = u.user_id
+LEFT JOIN view_total vt
+    ON vt.user_id = u.user_id
+ORDER BY activity_score DESC;
+
+
+
+```
 
 ### Trending
 
