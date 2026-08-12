@@ -297,3 +297,139 @@ LEFT JOIN comment_total ct
 LEFT JOIN view_total vt
     ON vt.user_id = u.user_id
 ORDER BY activity_score DESC;
+
+
+-- 11. Find the **top 10 trending posts from the last 7 days**, based on views.
+
+SELECT
+    bp.blog_post_id,
+    bp.title,
+    COUNT(pvl.view_log_id) AS views_last_7_days
+FROM blog_posts bp
+JOIN post_view_logs pvl
+    ON pvl.blog_post_id = bp.blog_post_id
+WHERE bp.post_status = 'published'
+  AND pvl.viewed_at >= NOW() - INTERVAL '7 days'
+GROUP BY
+    bp.blog_post_id,
+    bp.title
+ORDER BY views_last_7_days DESC
+LIMIT 10;
+
+-- 12. Create a **trend score** using:
+
+-- * Views = 1 point
+-- * Comments = 3 points
+-- Return the top 10 posts from the last 7 days.
+
+WITH recent_views AS(
+	SELECT
+		blog_post_id,
+		COUNT(*) AS views_last_7days
+	FROM post_view_logs
+	WHERE viewed_at >= NOW() - INTERVAL '30days'
+	GROUP BY blog_post_id	
+),
+
+recent_comments AS(
+	SELECT
+		c.blog_post_id,
+		COUNT(*) AS comments_last_7_days
+	FROM comments c
+	WHERE c.created_at >= NOW() - INTERVAL '30days'
+	GROUP BY c.blog_post_id
+)
+
+SELECT
+	bp.blog_post_id,
+	bp.title,
+	COALESCE(rv.views_last_7days, 0) AS views_last_7days,
+	COALESCE(rc.comments_last_7_days, 0) AS comments_last_7_days,
+	(
+		COALESCE(rv.views_last_7days, 0) +  COALESCE(rc.comments_last_7_days, 0)*3
+	) AS trend_score
+FROM blog_posts bp
+LEFT JOIN recent_views rv
+    ON rv.blog_post_id = bp.blog_post_id
+LEFT JOIN recent_comments rc
+    ON rc.blog_post_id = bp.blog_post_id
+WHERE bp.post_status = 'published'
+ORDER BY trend_score DESC
+LIMIT 10;
+
+
+-- 13. Find all posts that **have no comments**.
+
+SELECT
+	bp.blog_post_id,
+	bp.title,
+	COUNT(c.comment_id) AS total_comment
+FROM blog_posts bp
+LEFT JOIN comments c
+	ON c.blog_post_id = bp.blog_post_id
+GROUP BY bp.blog_post_id, bp.title
+HAVING COUNT(c.comment_id) = 0;
+
+
+
+-- 14. Find all posts that **have no comments** using `NOT EXISTS`.
+
+SELECT
+	bp.blog_post_id,
+	bp.title
+FROM blog_posts bp
+WHERE NOT EXISTS(
+	SELECT 1
+	FROM comments c
+	WHERE c.blog_post_id = bp.blog_post_id
+);
+
+
+
+-- 15. Find the **number of posts in each category**, including categories with zero posts.
+
+
+
+SELECT
+    cg.cat_id,
+    cg.category_name,
+    COUNT(bp.blog_post_id) AS total_posts
+FROM categories cg
+LEFT JOIN post_categories pcg
+    ON pcg.cat_id = cg.cat_id
+LEFT JOIN blog_posts bp
+    ON bp.blog_post_id = pcg.blog_post_id
+GROUP BY cg.cat_id, cg.category_name;
+
+
+-- 16. Build an **author directory** showing:
+
+-- * User ID
+-- * Username
+-- * Bio
+-- * Profile picture
+-- * Author status
+-- * Creation date
+
+SELECT
+	u.user_id,
+	u.username,
+	a.bio,
+	a.profile_picture_url as profile_pic,
+	a.author_status,
+	u.created_at
+FROM users u
+LEFT JOIN authors a
+	ON a.author_id = u.user_id;
+
+
+    
+-- 17.  Find all **banned authors**.
+
+SELECT
+	author_id,
+	first_name,
+	created_at,
+	author_status
+FROM authors
+WHERE author_status = 'banned';
