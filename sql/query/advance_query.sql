@@ -1,16 +1,6 @@
+-- 1. Rank all posts by their **view count** using `ROW_NUMBER()`.
 
 
-# stress test (how stress test - test)
-
-
-
-# 🟠 2. ADVANCED SQL
-
-## Window Functions & Ranking
-
-1. Rank all posts by their **view count** using `ROW_NUMBER()`.
-
-```sql
 SELECT
 	bp.blog_post_id,
 	bp.title,
@@ -23,11 +13,10 @@ LEFT JOIN post_view_count vc
 	ON vc.blog_post_id = bp.blog_post_Id
 
 
-```
 
-2. Find the **most viewed post for each author**.
+-- 2. Find the **most viewed post for each author**.
 
-```sql
+
 
 SELECT
     author_id,
@@ -53,11 +42,8 @@ FROM (
     WHERE a.author_status = 'active'
 ) ranked
 WHERE rn = 1;
-```
-> NOW for more clear in CTE
 
-```sql
-
+-- > NOW for more clear in CTE
 
 WITH ranked_posts AS (
     SELECT
@@ -87,11 +73,12 @@ SELECT
 FROM ranked_posts
 WHERE rn = 1;
 
-```
 
-3.  Find the **top 3 most viewed posts for each author**.
 
-``` sql
+
+-- 3. Find the **top 3 most viewed posts for each author**.
+
+
 
 SELECT 
 	author_id,
@@ -121,10 +108,10 @@ ORDER BY author_id, rank;
 
 
 
-```
-> with CTE
 
-```sql
+-- > with CTE
+
+
 
 WITH ranked_posts AS (
     SELECT
@@ -153,13 +140,12 @@ SELECT
 FROM ranked_posts
 WHERE rank <= 3
 ORDER BY author_id, rank;
-```
 
-4.  Find the **most popular post in each category** based on views.
-   
-```sql
 
-   SELECT
+
+-- 4. Find the **most popular post in each category** based on views.
+
+SELECT
     blog_post_id,
     category_name,
     title,
@@ -184,13 +170,11 @@ FROM (
 ) ranked
 WHERE rank = 1;
 
-```
 
 
 
-5.  Create a **user engagement leaderboard** by ranking users according to their total comments and views.
-   
-```sql
+-- 5.  Create a **user engagement leaderboard** by ranking users according to their total comments and views.
+
 
 WITH comment_total AS (
     SELECT
@@ -199,6 +183,7 @@ WITH comment_total AS (
     FROM comments
     GROUP BY user_id
 ),
+
 view_total AS (
     SELECT
         user_id,
@@ -207,6 +192,7 @@ view_total AS (
     WHERE user_id IS NOT NULL
     GROUP BY user_id
 ),
+
 user_activity AS (
     SELECT
         u.user_id,
@@ -230,31 +216,39 @@ SELECT
 FROM user_activity
 ORDER BY ranking_user;
 
-```
 
-6.  Calculate the **daily ranking of posts** based on the number of views received each day.
+-- subquery
 
-```sql
+
 SELECT
-	DATE(viewed_at) AS view_date,
-	blog_post_id,
-	COUNT(*) AS daily_views,
-	RANK() OVER(
-	PARTITION BY DATE(viewed_at)
-	ORDER BY COUNT(*) DESC
-	) AS daily_rank
-FROM post_view_logs
-GROUP BY
-	DATE(viewed_at),
-	blog_post_id
-ORDER BY
-	view_date,
-	daily_rank
-```
+    user_id,
+    username,
+    total_comments,
+    total_views,
+    RANK() OVER (
+        ORDER BY total_comments DESC, total_views DESC
+    ) AS ranking_user
+FROM (
+    SELECT
+        u.user_id,
+        u.username,
+        COUNT(DISTINCT c.comment_id) AS total_comments,
+        COUNT(DISTINCT v.view_log_id) AS total_views
+    FROM users u
+    LEFT JOIN comments c
+        ON c.user_id = u.user_id
+    LEFT JOIN post_view_logs v
+        ON v.user_id = u.user_id
+    GROUP BY u.user_id, u.username
+) AS user_totals;
+	
+	
 
-7.  Calculate the **running number of views for each post over time**.
-   
-```sql
+
+
+
+-- 7. Calculate the **running number of views for each post over time**
+
 SELECT
     blog_post_id,
     DATE(viewed_at) AS view_date,
@@ -270,34 +264,3 @@ GROUP BY
 ORDER BY
     blog_post_id,
     view_date;
-```
-
-8.  Create an **A/B testing ranking comparison** showing:
-
-
-* Old ranking using `RANK()`
-* New ranking using `DENSE_RANK()`
-
-```sql
-
-SELECT
-    bp.blog_post_id,
-    bp.title,
-    COALESCE(pvc.view_count, 0) AS view_count,
-
-    RANK() OVER (
-        ORDER BY COALESCE(pvc.view_count, 0) DESC
-    ) AS old_rank,
-
-    DENSE_RANK() OVER (
-        ORDER BY COALESCE(pvc.view_count, 0) DESC
-    ) AS new_rank
-
-FROM blog_posts bp
-LEFT JOIN post_view_count pvc
-    ON pvc.blog_post_id = bp.blog_post_id
-ORDER BY view_count DESC;
-
-```
-
----
