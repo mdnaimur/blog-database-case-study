@@ -1,23 +1,91 @@
 
 
 
-# 🔴 3. PERFORMANCE & OPTIMIZATION
+# 🔴  PERFORMANCE & OPTIMIZATION
 
 ## Query Optimization
 
-26. Find the **top 10 most viewed posts** and determine which indexes would improve this query.
+1. Find the **top 10 most viewed posts** and determine which indexes would improve this query.
+```sql
+EXPLAIN  ANALYZE
+SELECT
+    bp.blog_post_id,
+    bp.title,
+    pvc.view_count
+FROM blog_posts bp
+JOIN post_view_count pvc
+    ON pvc.blog_post_id = bp.blog_post_id
+ORDER BY pvc.view_count DESC
+LIMIT 10;
 
-27. Optimize a query that retrieves **recent published posts ordered by `published_at`**.
+```
+#### > index analysis 
+Primary key already index
+It run sequence sequnce scan and most cost part is soring view_count
 
-28. Optimize a query that retrieves posts together with their **view counts and comment counts**.
+```sql
+CREATE INDEX idx_post_count_view_desc
+ON post_view_count(view_count DESC);
+```
 
-29. Analyze a query that joins `posts`, `comments`, and `post_view_counts` and determine whether it can produce **row multiplication**.
+After indexing cost is reduce significant . and improve this query quality
 
-30. Rewrite a query that uses multiple joins and aggregations to avoid **unnecessary duplicate rows**.
+
+
+2. Optimize a query that retrieves **recent published posts ordered by `published_at`**.
+
+``` sql
+
+EXPLAIN ANALYZE SELECT
+    blog_post_id,
+    title,
+    published_at
+FROM blog_posts
+WHERE post_status = 'published'
+ORDER BY published_at DESC
+LIMIT 10;
+```
+**Best index**
+post_status and then sort by published_at, use a composite index
+
+```sql
+
+CREATE INDEX idx_blog_posts_published_recent 
+ON blog_posts (post_status, published_at DESC); 
+```
+
+3. Optimize a query that retrieves posts together with their **view counts and comment counts**.
+  
+```sql
+
+EXPLAIN ANALYZE
+SELECT
+    bp.blog_post_id,
+    bp.title,
+    COALESCE(pvc.view_count, 0) AS view_count,
+    COUNT(c.comment_id) AS comment_count
+FROM blog_posts bp
+LEFT JOIN post_view_count pvc
+    ON pvc.blog_post_id = bp.blog_post_id
+LEFT JOIN comments c
+    ON c.blog_post_id = bp.blog_post_id
+GROUP BY
+    bp.blog_post_id,
+    bp.title,
+    pvc.view_count;
+
+```
+**Best Index:**
+Here for view_count portion already have doing job aggregate viwe count which helps faster. no need index, 
+
+
+4.  Analyze a query that joins `posts`, `comments`, and `post_view_counts` and determine whether it can produce **row multiplication**.
+
+2.  Rewrite a query that uses multiple joins and aggregations to avoid **unnecessary duplicate rows**.
 
 ### Indexing
 
-31. Determine which indexes should be created for a query filtering posts by `post_status` and ordering by `published_at`.
+6. Determine which indexes should be created for a query filtering posts by `post_status` and ordering by `published_at`.
 
 32. Determine the appropriate indexes for finding **recent posts from the last 7 days**.
 
@@ -29,30 +97,30 @@
 * `user_id`
 * `viewed_at`
 
-35. Design indexes for efficiently retrieving the **top posts per author**.
+10. Design indexes for efficiently retrieving the **top posts per author**.
 
 ### Execution Plans
 
-36. Use `EXPLAIN` to analyze a query that retrieves the latest 20 published posts.
+11. Use `EXPLAIN` to analyze a query that retrieves the latest 20 published posts.
 
 37. Use `EXPLAIN ANALYZE` to identify the expensive operations in a multi-table analytics query.
 
-38. Compare the execution plans of:
+14. Compare the execution plans of:
 
 * `LEFT JOIN ... IS NULL`
 * `NOT EXISTS`
 
-39. Compare the performance of:
+15. Compare the performance of:
 
 * Correlated subquery
 * CTE
 * JOIN
 
-40. Determine whether PostgreSQL is using an **Index Scan, Bitmap Index Scan, or Sequential Scan**, and explain why.
+16. Determine whether PostgreSQL is using an **Index Scan, Bitmap Index Scan, or Sequential Scan**, and explain why.
 
 ### Aggregation Performance
 
-41. Optimize a query that calculates **comment counts for every post**.
+17. Optimize a query that calculates **comment counts for every post**.
 
 42. Optimize a query that calculates **view counts for every user**.
 
@@ -66,13 +134,13 @@
 
 ### Window Function Performance
 
-45. Analyze the performance of ranking millions of posts using `ROW_NUMBER()`.
+21. Analyze the performance of ranking millions of posts using `ROW_NUMBER()`.
 
 46. Determine how indexing can help a query using:
 
 `PARTITION BY user_id ORDER BY view_count DESC`
 
-47. Optimize a query that finds the **top 3 posts per author** from a very large posts table.
+23. Optimize a query that finds the **top 3 posts per author** from a very large posts table.
 
 48. Compare the performance of:
 
@@ -84,7 +152,7 @@ for finding the top post per author.
 
 ### Large-Scale Analytics
 
-49. Design a query capable of calculating **daily post rankings** efficiently when `post_view_logs` contains millions of rows.
+25. Design a query capable of calculating **daily post rankings** efficiently when `post_view_logs` contains millions of rows.
 
 50. Optimize a **7-day trending-post query** when the view-log table contains hundreds of millions of records.
 
@@ -98,7 +166,7 @@ for finding the top post per author.
 
 ### Advanced PostgreSQL Performance
 
-55. Identify queries that could benefit from **partial indexes**.
+31. Identify queries that could benefit from **partial indexes**.
 
 56. Identify queries that could benefit from **covering indexes using `INCLUDE`**.
 

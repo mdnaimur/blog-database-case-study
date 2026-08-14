@@ -6,7 +6,11 @@
   <!-- * seed -->
   <!-- * query practice (add others)
   * advance query -->
-  * Performance queyy
+  * Performance queyy(prompt learning then query)
+  * pl/pg programming fundemetal
+  * roll back transacion
+  * backup and security
+
   * add dbml transaction veiw , record obs and gif
   * data analysis
   * do publish gitbook
