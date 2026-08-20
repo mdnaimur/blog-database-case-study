@@ -6,7 +6,7 @@
   <!-- * seed -->
   <!-- * query practice (add others)
   * advance query -->
-  * Performance queyy(prompt learning then query)
+  <!-- * Performance queyy(prompt learning then query) -->
   * pl/pg programming fundemetal
   * roll back transacion
   * backup and security
@@ -18,7 +18,7 @@
   * do pushlish linked
 
 
-
+`Materalize view ` and `Veiw` look at not gap it
 
 ### After finishing query practice 
 1. do all doc
@@ -35,13 +35,29 @@ now tasks:
 <!-- 1. create table
 2. seed query with note
 3. organize question set -->
-4. then query practice
+<!-- 4. then query practice -->
 5. schema doc
 6. add constrains and index and doc performance optimazizztrion
 
 
+---
 
+`20-08-2026`
 
+> todo note some point note those need to learn 
+
+- indexing again and do separte something from file
+- pl/pg programming 
+- roll back and security and bacup 
+- 
+> Working sequence
+ * pl/pgSQl programming
+ * Trigger transaction
+ * Security roll back and bacup
+ * indexing again
+ * Organize the git
+ * organize the githubbook
+ * and post
 
 ---
 ## Phase 5 — Performance
