@@ -7,7 +7,7 @@
   <!-- * query practice (add others)
   * advance query -->
   <!-- * Performance queyy(prompt learning then query) -->
-  * pl/pg programming fundemetal
+  <!-- * pl/pg programming fundemetal -->
   * roll back transacion
   * backup and security
 
@@ -18,7 +18,7 @@
   * do pushlish linked
 
 
-`Materalize view ` and `Veiw` look at not gap it
+<!-- `Materalize view ` and `Veiw` look at not gap it -->
 
 ### After finishing query practice 
 1. do all doc
@@ -54,7 +54,8 @@ now tasks:
  * pl/pgSQl programming
  * Trigger transaction
  * Security roll back and bacup
- * indexing again
+ * 
+ * indexing again and view and materialize view
  * Organize the git
  * organize the githubbook
  * and post
@@ -189,5 +190,21 @@ Security & Operations
 ```
 
 **This is enough for a strong PostgreSQL portfolio project.** I would not add more major phases after this.
+
+
+
+
+
+
+
+
+---
+
+
+## Question need to solve
+
+* [ ] github: how file organize , folder, readme .gitpage
+* [ ] based on file, rewrite and organize 
+* [ ] 
 
 
