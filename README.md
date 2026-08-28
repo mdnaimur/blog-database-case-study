@@ -1,6 +1,7 @@
-# Scalable Blog System: PostgreSQL Database Design & Data Modeling Query Performance Case Study
+# Scalable Blog System: PostgreSQL Database Design & Performance Case Study
 
- ### Production-oriented PostgreSQL database case study.
+
+> Production-oriented PostgreSQL database case study.
  
 > **Project:** Blog Management Platform  
 > **Database:** PostgreSQL  
@@ -11,40 +12,86 @@
 
 ## Case Study
 
-This project demonstrates the complete database engineering process
-from requirements analysis to query optimization.
+This project demonstrates the database engineering process for a scalable blog management platform, covering requirements analysis, data modeling, database design, schema implementation, SQL analysis, indexing, and query optimization.
 
 ---
 
-## 1. Introduction
+### System Overview
 
-This document describes the relational database schema for a **Blog Management Platform**. The system supports three user roles (`admin`, `author`, `reader`), content publishing workflows, category-based organization, reader engagement through comments, and view analytics.
+The platform supports:
 
-
+- Three user roles: `admin`, `author`, `reader`
+- Content creation and publishing workflows
+- Category-based content organization
+- Reader comments and engagement
+- Blog view analytics
 
 ---
-## Chapters
 
-### Chapter 01 — Requirement Analysis
-➡️ [Read Chapter](chapters/01-requirement-analysis.md)
+## Case Study Phases
 
-### Chapter 02 — Data Modeling & ER Diagram
-➡️ [Read Chapter](chapters/02-data-modeling.md)
+### Phase 00 — Problem Statement
 
-### Chapter 03 — Database Design
-➡️ [Read Chapter](chapters/03-database-design.md)
+➡️ [Read Phase](chapters/phase-00-problem-statement.md)
 
-### Chapter 04 — Schema Implementation
-➡️ [Read Chapter](chapters/04-schema-implementation.md)
+### Phase 01 — Requirement Analysis
 
-### Chapter 05 — Seed Data
-➡️ [Read Chapter](chapters/05-seed-data.md)
+➡️ [Read Phase](chapters/phase-01-requirement-analysis.md)
 
-### Chapter 06 — SQL Analysis
-➡️ [Read Chapter](chapters/06-sql-analysis.md)
+### Phase 02 — Logical Data Modeling
 
-### Chapter 07 — Indexing
-➡️ [Read Chapter](chapters/07-indexing.md)
+➡️ [Read Phase](chapters/phase-02-logical-data-modeling.md)
 
-### Chapter 08 — Query Optimization
-➡️ [Read Chapter](chapters/08-query-optimization.md)
+### Phase 03 — Physical Data Modeling & ER Diagram
+
+➡️ [Read Phase](chapters/phase-03-physical-data-modeling.md)
+
+### Phase 04 — Database Design
+
+➡️ [Read Phase](chapters/phase-04-database-design.md)
+
+### Phase 05 — Schema Implementation
+
+➡️ [Read Phase](chapters/phase-05-schema-implementation.md)
+
+### Phase 06 — Seed Data
+
+➡️ [Read Phase](chapters/phase-06-seed-data.md)
+
+### Phase 07 — SQL Analysis
+
+➡️ [Read Phase](chapters/phase-07-sql-analysis.md)
+
+### Phase 08 — Indexing
+
+➡️ [Read Phase](chapters/phase-08-indexing.md)
+
+### Phase 09 — Query Optimization
+
+➡️ [Read Phase](chapters/phase-09-query-optimization.md)
+
+### Phase 10 — Final Analysis
+
+➡️ [Read Phase](chapters/phase-10-final-analysis.md)
+
+---
+
+## Repository Structure
+
+```text
+chapters/     → Case study documentation
+diagrams/     → ER diagrams and database diagrams
+dbml/         → DBML database model
+sql/          → PostgreSQL schema and queries
+seed/         → Sample data
+analysis/     → Query and performance analysis
+images/       → Supporting images
+```
+
+---
+
+## Author
+
+**MD NAIMUR RAHMAN**
+
+[Website](https://mnr100.vercel.app/)
