@@ -16,7 +16,7 @@ The database contains:
 - post_categories
 - comments
   post_view logs
-- post_view_logs
+- post_view_count
 
 ## Primary Keys
 
@@ -32,6 +32,11 @@ Example:
 
 ## Constraints
 
+**Data Integrity**
+
+> Database integrity is enforced using relational constraints.
+
+
 The design uses:
 
 - PRIMARY KEY
@@ -40,6 +45,12 @@ The design uses:
 - NOT NULL
 - CHECK
 - DEFAULT
+
+Examples
+
+- Unique email addresses
+- Valid foreign key references
+- Comment status validation
 
 ## Design Decisions
 
@@ -53,28 +64,8 @@ The many-to-many relationship is resolved using `post_categories`.
 
 ## Related SQL
 
-➡️ [View Schema SQL](../sql/schema/)
+> ➡️ [View Schema SQL](../sql/schema/01-tables-blog_system_case_study_schema.sql)
 
-➡️ [View Constraints](../sql/schema/constraints.sql)
-
-
+> ➡️ [View Constraints](../sql/schema/02-constraints_blog_system.sql)
 
 
-
-## Data Integrity
-
-Database integrity is enforced using relational constraints.
-
-Constraints used
-
-- PRIMARY KEY
-- FOREIGN KEY
-- UNIQUE
-- CHECK
-- NOT NULL
-
-Examples
-
-- Unique email addresses
-- Valid foreign key references
-- Comment status validation

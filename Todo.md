@@ -1,4 +1,11 @@
 
+`28-08-2026`
+
+* Finished chapter documentaion
+* do sql accroding sequnce 
+* 
+
+
   <!-- * review and revision with write this project
   * physical model
   * DBML desing 

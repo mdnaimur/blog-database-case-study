@@ -531,7 +531,7 @@ The logical data model is represented in DBML.
 
 
 
-<div align="center" style="background-color:#fff; padding:20px; >
+<div align="center"  >
 
 <img src="../dbml/blog_system_case_study.png"
      alt="Logical Data Model"
@@ -543,11 +543,10 @@ The logical data model is represented in DBML.
 
 ### Logical Data Model
 
+<div align="center">
 
-<div align="center" style="background-color:#fff; padding:20px; >
-
-<img src="../diagrams/Blog_System_ER_diaram.png"
-     alt="Logical Data Model"
+<img src="../diagrams/er_diagram_blog_system.png"
+     alt="Physical Data Model"
      width="1000">
 
 </div>
