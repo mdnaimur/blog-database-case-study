@@ -40,15 +40,15 @@ The platform supports:
 
 ### Phase 02 — Logical Data Modeling
 
-➡️ [Read Phase](chapters/phase-02-logical-data-modeling.md)
+➡️ [Read Phase](chapters/phase-02-data-Logical-modeling.md)
 
 ### Phase 03 — Physical Data Modeling & ER Diagram
 
-➡️ [Read Phase](chapters/phase-03-physical-data-modeling.md)
+➡️ [Read Phase](chapters/phase-03-data-physical-modeling.md)
 
 ### Phase 04 — Database Design
 
-➡️ [Read Phase](chapters/phase-04-database-design.md)
+➡️ [Read Phase](chapters/phase-04-schema-design.md)
 
 ### Phase 05 — Schema Implementation
 

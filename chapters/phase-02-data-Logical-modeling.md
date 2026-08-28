@@ -524,6 +524,38 @@ PostCategories
 Categories
 ```
 
+
+The logical data model is represented in DBML.
+
+➡️ [View DBML](../dbml/blog_system_case_study.dbml)
+
+
+
+<div align="center" style="background-color:#fff; padding:20px; >
+
+<img src="../dbml/blog_system_case_study.png"
+     alt="Logical Data Model"
+     width="1000">
+
+</div>
+
+
+
+### Logical Data Model
+
+
+<div align="center" style="background-color:#fff; padding:20px; >
+
+<img src="../diagrams/Blog_System_ER_diaram.png"
+     alt="Logical Data Model"
+     width="1000">
+
+</div>
+
+
+The logical relationships identified above are represented in the
+following ER diagram.
+
 ---
 
 # Step 9: Normalize

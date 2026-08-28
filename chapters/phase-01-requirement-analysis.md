@@ -1,3 +1,8 @@
+# Phase 01 — Requirement Analysis
+
+> Defines the functional, non-functional, data, business, and relationship
+> requirements of the Blog Management Platform.
+
 
 # 1. System Overview
 

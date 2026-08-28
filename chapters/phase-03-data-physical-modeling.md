@@ -1,6 +1,7 @@
 
 
 # Physical Data Model (PostgreSQL)
+→ How PostgreSQL actually implements them?
 
 Now we decide exactly how each table will be stored.
 
@@ -90,6 +91,18 @@ Now we decide exactly how each table will be stored.
 | user_id    | BIGINT      | NULL REFERENCES users(id) |
 | ip_address | INET        | NULL                      |
 | viewed_at  | TIMESTAMPTZ | DEFAULT now()             |
+
+---
+
+## Physical ER Diagram
+
+<div align="center">
+
+<img src="../diagrams/blog_system_physical-data-model.png"
+     alt="Physical Data Model"
+     width="1000">
+
+</div>
 
 ---
 
