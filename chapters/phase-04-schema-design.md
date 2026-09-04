@@ -69,3 +69,6 @@ The many-to-many relationship is resolved using `post_categories`.
 > ➡️ [View Constraints](../sql/schema/02-constraints_blog_system.sql)
 
 
+> ➡️ [View Indexes](../sql/schema/03-index_blog_system.sql)
+
+

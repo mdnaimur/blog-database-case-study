@@ -1,6 +1,15 @@
-Yes. The key is: **the `.md` chapter is the explanation, while the actual SQL should live in `sql/`.** The chapter links to the SQL.
-
-Here is a concrete example for your project.
+chapters/
+├── phase-00-problem-statement.md
+├── phase-01-requirement-analysis.md
+├── phase-02-logical-data-modeling.md
+├── phase-03-physical-data-modeling.md
+├── phase-04-database-design.md
+├── phase-05-schema-implementation.md
+├── phase-06-seed-data.md
+├── phase-07-sql-analysis.md
+├── phase-08-indexing.md
+├── phase-09-query-optimization.md
+└── phase-10-final-analysis.md
 
 ## Phase 04 — Database Design
 
