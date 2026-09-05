@@ -1324,3 +1324,24 @@ sql/
 
 
 
+## Related Project Files
+
+### Schema
+
+➡️ [Tables](../sql/schema/01-tables-blog_system_case_study_schema.sql)
+
+➡️ [Constraints](../sql/schema/02-constraints_blog_system.sql)
+
+➡️ [Indexes](../sql/schema/03-index_blog_system.sql)
+
+### Seed Implementation
+
+➡️ `../seed/`
+
+### Previous Phase
+
+➡️ [Phase 07 — SQL Analysis](/chapters/phase-07-sql-analysis.md)
+
+### Next Phase
+
+➡️ [Phase 09 — Query Optimazation](/chapters/phase-09-query-optimization.md)

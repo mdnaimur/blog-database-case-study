@@ -778,7 +778,26 @@ Future growth could require:
 
 ---
 
-# 10.18 Key Engineering Lessons
+
+## 10.18 Future Scalability and Extensions
+
+The current design provides a foundation for extending the blog platform as traffic, content, and user activity increase.
+
+Possible future enhancements include:
+
+* **Tagging System** — support multiple tags per post.
+* **Notifications** — notify users about comments, followers, and other activities.
+* **Likes & Reactions** — introduce post and comment reactions.
+* **Followers** — allow users to follow authors.
+* **Distributed Caching** — introduce Redis or another distributed caching layer for frequently accessed data.
+* **Search Engine Integration** — integrate Elasticsearch or another dedicated search platform for large-scale search workloads.
+* **Table Partitioning** — partition high-volume tables such as `post_view_logs` when dataset size justifies it.
+* **Read Replicas** — distribute read-heavy workloads across PostgreSQL replicas.
+
+
+---
+
+# 10.19 Key Engineering Lessons
 
 This case study demonstrates several important PostgreSQL engineering principles.
 
@@ -832,7 +851,7 @@ A query should be considered optimized only after comparing execution behavior.
 
 ---
 
-# 10.19 Final Architecture Summary
+# 10.20 Final Architecture Summary
 
 The complete project follows this progression:
 
@@ -949,38 +968,20 @@ This completes the PostgreSQL database design and performance case study.
 
 ### Schema
 
-➡️ [Tables](../sql/schema/01-tables-blog-system.sql)
+➡️ [Tables](../sql/schema/01-tables-blog_system_case_study_schema.sql)
 
-➡️ [Constraints](../sql/schema/02-constraints-blog-system.sql)
+➡️ [Constraints](../sql/schema/02-constraints_blog_system.sql)
 
-➡️ [Indexes](../sql/schema/03-indexes-blog-system.sql)
+➡️ [Indexes](../sql/schema/03-index_blog_system.sql)
 
 ### Data Model
 
-➡️ [DBML](../dbml/blog.dbml)
+➡️ [DBML](../dbml/blog_system_case_study.dbml)
 
 ### Previous Phases
 
-➡️ [Phase 08 — Indexing](phase-08-indexing.md)
+➡️ [Phase 08 — Indexing](/chapters/phase-08-indexing.md)
 
-➡️ [Phase 09 — Query Optimization](phase-09-query-optimization.md)
+➡️ [Phase 09 — Query Optimization](/chapters/phase-09-query-optimization.md)
 
----
 
-## Final Project Status
-
-```text
-✓ Problem Definition
-✓ Requirements Analysis
-✓ Logical Data Modeling
-✓ Physical Data Modeling
-✓ Database Design
-✓ Schema Implementation
-✓ Seed Data
-✓ SQL Analysis
-✓ Indexing
-✓ Query Optimization
-✓ Final Analysis
-```
-
-**Case Study Complete**

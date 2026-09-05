@@ -1,10 +1,6 @@
 
-`28-08-2026`
 
-* Finished chapter documentaion
-* do sql accroding sequnce 
-* 
-
+# task today
 
 
 [
@@ -42,13 +38,7 @@
 8. advnace and extra adnvace query data engineering 
 ---
 
-now tasks:
-<!-- 1. create table
-2. seed query with note
-3. organize question set -->
-<!-- 4. then query practice -->
-5. schema doc
-6. add constrains and index and doc performance optimazizztrion
+
 
 
 ---
@@ -72,14 +62,7 @@ now tasks:
  * and post
 
 ---
-## Phase 5 — Performance
 
-* [ ] Identify slow queries
-* [ ] Run `EXPLAIN ANALYZE`
-* [ ] Optimize queries
-* [ ] Create/modify indexes
-* [ ] Compare before vs after
-* [ ] Test with different dataset sizes
 
 
 ## Phase 4 — PostgreSQL Engineering
@@ -149,32 +132,7 @@ Research     → PhD evidence
 | **Phase 9**  | Transactions & Concurrency     | ACID, transactions, isolation, locks, concurrency                 |
 | **Phase 10** | Database Security & Operations | Roles, permissions, backup/restore                                |
 
-### Why I added Phase 9
 
-Your **Database Programming** phase should not contain everything.
-
-Keep these separate:
-
-```text
-Database Programming
-→ PL/pgSQL
-→ Functions
-→ Procedures
-→ Triggers
-```
-
-```text
-Transactions & Concurrency
-→ BEGIN / COMMIT / ROLLBACK
-→ Isolation
-→ Locks
-→ MVCC
-→ Concurrent operations
-```
-
-They are important PostgreSQL concepts but are **not the same thing**.
-
-### Your final project flow
 
 ```text
 Problem

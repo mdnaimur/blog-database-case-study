@@ -14,6 +14,20 @@
 
 This project demonstrates the database engineering process for a scalable blog management platform, covering requirements analysis, data modeling, database design, schema implementation, SQL analysis, indexing, and query optimization.
 
+This project demonstrates the database engineering process for a scalable blog management platform, covering:
+
+* Requirements analysis
+* Logical and physical data modeling
+* Database design
+* Schema implementation
+* Seed data generation
+* SQL analysis
+* Indexing
+* Query optimization
+* Execution-plan analysis
+
+The goal is to demonstrate practical PostgreSQL database engineering rather than simply implementing CRUD operations.
+
 ---
 
 ### System Overview
@@ -48,15 +62,15 @@ The platform supports:
 
 ### Phase 04 — Database Design
 
-➡️ [Read Phase](chapters/phase-04-schema-design.md)
+➡️ [Read Phase](chapters/phase-04-schemaDB-design.md)
 
 ### Phase 05 — Schema Implementation
 
-➡️ [Read Phase](chapters/phase-05-schema-implementation.md)
+➡️ [Read Phase](chapters/phase-05-Schema%20Implementation.md)
 
 ### Phase 06 — Seed Data
 
-➡️ [Read Phase](chapters/phase-06-seed-data.md)
+➡️ [Read Phase](chapters/phase-06-Seed%20Data.md)
 
 ### Phase 07 — SQL Analysis
 
@@ -87,6 +101,50 @@ seed/         → Sample data
 analysis/     → Query and performance analysis
 images/       → Supporting images
 ```
+
+---
+## Performance Engineering
+
+The performance analysis follows a practical optimization workflow:
+
+```text
+Query
+  ↓
+EXPLAIN (ANALYZE, BUFFERS)
+  ↓
+Identify Bottleneck
+  ↓
+Index / Query Optimization
+  ↓
+EXPLAIN (ANALYZE, BUFFERS)
+  ↓
+Compare Results
+```
+
+The case study focuses on measuring query behavior and validating optimization decisions rather than assuming that an index automatically improves performance.
+
+
+---
+
+## Key PostgreSQL Concepts Demonstrated
+
+* Relational data modeling
+* Primary and foreign keys
+* Constraints and data integrity
+* Many-to-many relationships
+* Normalization and selective denormalization
+* Aggregate queries
+* JOIN strategies
+* Window functions
+* CTEs
+* `EXISTS` / `NOT EXISTS`
+* Index design
+* Partial and composite indexes
+* Query execution plans
+* `EXPLAIN (ANALYZE, BUFFERS)`
+* Query optimization
+* Read-heavy analytics
+* Summary/counter tables
 
 ---
 

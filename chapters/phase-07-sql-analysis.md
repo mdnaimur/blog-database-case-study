@@ -916,3 +916,27 @@ This is primarily an **advanced SQL learning example**.
 It is useful for demonstrating PostgreSQL window functions, but it is not a major business requirement by itself.
 
 ---
+
+
+
+## Related Project Files
+
+### Schema
+
+➡️ [Tables](../sql/schema/01-tables-blog_system_case_study_schema.sql)
+
+➡️ [Constraints](../sql/schema/02-constraints_blog_system.sql)
+
+➡️ [Indexes](../sql/schema/03-index_blog_system.sql)
+
+### Seed Implementation
+
+➡️ `../seed/`
+
+### Previous Phase
+
+➡️ [Phase 06 — Seed Data](/chapters/phase-06-Seed%20Data.md)
+
+### Next Phase
+
+➡️ [Phase 08 — Indexing](/chapters/phase-08-indexing.md)
